@@ -1,0 +1,25 @@
+{
+  "name": "aida",
+  "description": "Agentic Intelligence Digital Assistant - Personal productivity and life management system for Claude Code",
+  "owner": {
+    "name": "oakensoul",
+    "email": "github@oakensoul.com",
+    "url": "https://github.com/oakensoul"
+  },
+  "plugins": [
+    {
+      "name": "core",
+      "source": "https://github.com/oakensoul/aida-core-plugin",
+      "description": "Core AIDA functionality - memory system, knowledge management, context tracking",
+      "version": "0.1.0",
+      "tags": ["core", "memory", "knowledge", "essential"]
+    },
+    {
+      "name": "personality-jarvis",
+      "source": "https://github.com/oakensoul/aida-personality-jarvis",
+      "description": "JARVIS personality - snarky British butler assistant with dry wit",
+      "version": "0.1.0",
+      "tags": ["personality", "jarvis", "butler"]
+    }
+  ]
+}
