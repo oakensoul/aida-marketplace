@@ -1,58 +1,49 @@
-# AIDA - Agentic Intelligence Digital Assistant
+# AIDA Marketplace
 
-A personal productivity and life management system for Claude Code.
-
-## What is AIDA?
-
-AIDA transforms Claude into your personal digital assistant - think JARVIS from Iron Man, but for your actual life. It manages your daily workflows, remembers important context, tracks decisions, and helps you stay organized.
+Plugin marketplace for AIDA — Agentic Intelligence Digital Assistant.
 
 ## Quick Start
+
 ```bash
-# Add AIDA marketplace
+# Add the AIDA marketplace (one-time)
 /plugin marketplace add oakensoul/aida-marketplace
 
-# Install core system (required)
+# Install the core plugin
 /plugin install core@aida
 
-# Install a personality (choose one)
-/plugin install personality-jarvis@aida
-
-# Start using
-/start-day
+# Configure AIDA
+/aida config
 ```
 
 ## Available Plugins
 
-### Core System (Required)
-- **core** - Memory management, knowledge base, context tracking
+### Core
 
-### Personalities (Choose One)
-- **personality-jarvis** - Snarky British butler (like Tony Stark's JARVIS)
-- More personalities coming soon!
+- **core** — Foundation plugin for building your custom Claude Code
+  experience. Extension scaffolding, multi-level configuration, and
+  structured session context.
 
-## What You Get
+## What is AIDA?
 
-- 📝 **Memory System** - Remembers context across conversations
-- 🧠 **Knowledge Base** - Stores information about your system and preferences  
-- 📅 **Daily Workflows** - Start day, end day, weekly reviews
-- 🤖 **Personalized Assistant** - Choose how your assistant talks to you
-- 📊 **Decision Tracking** - Logs important decisions with rationale
-- 🔗 **Obsidian Integration** - Syncs with your knowledge vault (coming soon)
+AIDA provides the base layer for extending Claude Code with standardized
+patterns. Instead of building agents, commands, and skills from scratch,
+AIDA gives you the scaffolding, configuration management, and session
+persistence to build on.
 
-## Philosophy
-
-AIDA is built on these principles:
-1. **Memory Over Execution** - Build context over time
-2. **Personality-Driven** - Your assistant should reflect you
-3. **Conversational First** - Natural language over commands
-4. **Personal but Shareable** - Framework is public, your data is private
+- **Extension creation** — Guided templates for agents, commands, skills,
+  and plugins with consistent conventions
+- **Configuration management** — User-level defaults, project-level
+  overrides, auto-detected environment settings
+- **Session persistence** — Mementos capture rich project state, scoped to
+  projects or your user profile
+- **Health diagnostics** — Built-in troubleshooting and feedback tools
 
 ## Documentation
 
-- [Getting Started](docs/getting-started.md) _(coming soon)_
-- [Core Concepts](docs/concepts.md) _(coming soon)_
-- [Creating Plugins](docs/creating-plugins.md) _(coming soon)_
+See the [AIDA Core Plugin](https://github.com/oakensoul/aida-core-plugin)
+repository for full documentation, guides, and examples.
 
 ## Contributing
 
-Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) _(coming soon)_
+Bug reports and feature requests welcome via GitHub Issues on the
+[core plugin repository](https://github.com/oakensoul/aida-core-plugin/issues).
