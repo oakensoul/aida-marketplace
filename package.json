@@ -1,0 +1,19 @@
+{
+  "name": "aida-marketplace",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "check": "tsx scripts/update-marketplace.ts",
+    "update": "tsx scripts/update-marketplace.ts --update",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  }
+}
