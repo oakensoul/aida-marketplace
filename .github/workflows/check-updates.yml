@@ -1,3 +1,4 @@
+---
 name: Check Plugin Updates
 
 on:
@@ -75,20 +76,20 @@ jobs:
           git push -u origin "$BRANCH"
 
           # Write PR body to a temp file for clean formatting
-          cat > /tmp/pr-body.md << 'PRBODY'
-## Summary
-
-Automated plugin version update detected by the weekly check workflow.
-
-Review the changes to `.claude-plugin/marketplace.json` and `README.md`
-to confirm the new versions.
-
-## Test plan
-
-- [ ] Verify marketplace.json has correct version and ref values
-- [ ] Verify README.md plugin table is accurate
-- [ ] Spot-check that listed versions match the latest GitHub releases
-PRBODY
+          {
+            echo "## Summary"
+            echo ""
+            echo "Automated plugin version update detected by the weekly check workflow."
+            echo ""
+            echo "Review the changes to \`.claude-plugin/marketplace.json\` and \`README.md\`"
+            echo "to confirm the new versions."
+            echo ""
+            echo "## Test plan"
+            echo ""
+            echo "- [ ] Verify marketplace.json has correct version and ref values"
+            echo "- [ ] Verify README.md plugin table is accurate"
+            echo "- [ ] Spot-check that listed versions match the latest GitHub releases"
+          } > /tmp/pr-body.md
 
           gh pr create \
             --base main \
