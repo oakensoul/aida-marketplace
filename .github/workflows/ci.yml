@@ -1,0 +1,60 @@
+---
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  typecheck:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Validate plugins
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run check
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install linters
+        run: |
+          pip install yamllint
+          npm install -g markdownlint-cli
+
+      - name: Lint YAML
+        run: yamllint .github/workflows/ .yamllint.yml .markdownlint.yml
+
+      - name: Lint Markdown
+        run: markdownlint '**/*.md'
+
+      - name: Validate JSON
+        run: |
+          python -m json.tool .claude-plugin/marketplace.json > /dev/null
+          echo "marketplace.json is valid JSON"
