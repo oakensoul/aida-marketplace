@@ -1,0 +1,96 @@
+name: Check Plugin Updates
+
+on:
+  schedule:
+    - cron: "0 8 * * 1" # Monday 8am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: plugin-updates
+  cancel-in-progress: false
+
+jobs:
+  check-updates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - run: npm ci
+
+      - name: Check for plugin updates
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          npm run check
+          EXIT_CODE=$?
+          echo "exit_code=$EXIT_CODE" >> "$GITHUB_OUTPUT"
+          if [ "$EXIT_CODE" -eq 2 ]; then
+            echo "::error::Script encountered an error"
+            exit 1
+          elif [ "$EXIT_CODE" -ne 0 ] && [ "$EXIT_CODE" -ne 1 ]; then
+            echo "::error::Unexpected exit code: $EXIT_CODE"
+            exit 1
+          fi
+
+      - name: Create update PR
+        if: steps.check.outputs.exit_code == '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Check for existing open update PRs by branch prefix
+          EXISTING=$(gh pr list --search "head:automated/plugin-updates" --state open --json number --jq 'length')
+          if [ "$EXISTING" -gt "0" ]; then
+            echo "Existing update PR found, skipping."
+            exit 0
+          fi
+
+          # Apply updates
+          npm run update
+
+          # Stage and verify there are actual changes to commit
+          git add .claude-plugin/marketplace.json README.md
+          if git diff --staged --quiet; then
+            echo "No file changes detected after update."
+            exit 0
+          fi
+
+          # Configure git and create branch
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          BRANCH="automated/plugin-updates-$(date +%Y%m%d-%H%M)"
+          git checkout -b "$BRANCH"
+          git commit -m "chore: update plugin versions" \
+            -m "Automated plugin version update from GitHub Actions."
+          git push -u origin "$BRANCH"
+
+          # Write PR body to a temp file for clean formatting
+          cat > /tmp/pr-body.md << 'PRBODY'
+## Summary
+
+Automated plugin version update detected by the weekly check workflow.
+
+Review the changes to `.claude-plugin/marketplace.json` and `README.md`
+to confirm the new versions.
+
+## Test plan
+
+- [ ] Verify marketplace.json has correct version and ref values
+- [ ] Verify README.md plugin table is accurate
+- [ ] Spot-check that listed versions match the latest GitHub releases
+PRBODY
+
+          gh pr create \
+            --base main \
+            --title "chore: update plugin versions" \
+            --body-file /tmp/pr-body.md
