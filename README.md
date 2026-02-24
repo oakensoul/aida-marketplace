@@ -26,12 +26,12 @@ Plugin marketplace for AIDA — Agentic Intelligence Digital Assistant.
 ## What is AIDA?
 
 AIDA provides the base layer for extending Claude Code with standardized
-patterns. Instead of building agents, commands, and skills from scratch,
-AIDA gives you the scaffolding, configuration management, and session
-persistence to build on.
+patterns. Instead of building agents and skills from scratch, AIDA gives
+you the scaffolding, configuration management, and session persistence to
+build on.
 
-- **Extension creation** — Guided templates for agents, commands, skills,
-  and plugins with consistent conventions
+- **Extension creation** — Guided templates for agents, skills, and plugins
+  with consistent conventions
 - **Configuration management** — User-level defaults, project-level
   overrides, auto-detected environment settings
 - **Session persistence** — Mementos capture rich project state, scoped to
