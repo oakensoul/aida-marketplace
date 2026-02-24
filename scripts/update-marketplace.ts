@@ -263,28 +263,19 @@ function generatePluginSection(marketplace: Marketplace): string {
   const sections: string[] = [];
   for (const [category, plugins] of byCategory) {
     const heading = `### ${category.charAt(0).toUpperCase() + category.slice(1)}`;
-    const rows = plugins.map((p) => {
+    const entries = plugins.map((p) => {
       const repoUrl =
         p.homepage ||
         (p.source.source === "github"
           ? `https://github.com/${p.source.repo}`
           : "");
-      const nameCell = repoUrl
+      const name = repoUrl
         ? `**[${p.name}](${repoUrl})**`
         : `**${p.name}**`;
-      const desc = p.description.replace(/\|/g, "\\|");
-      return `| ${nameCell} | v${p.version} | ${desc} |`;
+      return `- ${name} v${p.version}\\\n  ${p.description}`;
     });
 
-    sections.push(
-      [
-        heading,
-        "",
-        "| Plugin | Version | Description |",
-        "|--------|---------|-------------|",
-        ...rows,
-      ].join("\n")
-    );
+    sections.push([heading, "", ...entries].join("\n"));
   }
 
   return sections.join("\n\n");
