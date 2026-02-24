@@ -144,6 +144,7 @@ function validateMarketplace(data: unknown): data is Marketplace {
 
 function checkPlugins(marketplace: Marketplace): CheckResult[] {
   const results: CheckResult[] = [];
+  const owner = marketplace.owner.name;
 
   for (const plugin of marketplace.plugins) {
     if (plugin.source.source !== "github") {
@@ -154,6 +155,19 @@ function checkPlugins(marketplace: Marketplace): CheckResult[] {
         latestVersion: null,
         status: "skipped",
         message: "non-GitHub source",
+      });
+      continue;
+    }
+
+    // Only auto-update plugins owned by the marketplace owner
+    if (!plugin.source.repo.startsWith(`${owner}/`)) {
+      results.push({
+        plugin: plugin.name,
+        repo: plugin.source.repo,
+        currentVersion: plugin.version,
+        latestVersion: null,
+        status: "skipped",
+        message: `third-party plugin (${plugin.source.repo}) -- skipped`,
       });
       continue;
     }
