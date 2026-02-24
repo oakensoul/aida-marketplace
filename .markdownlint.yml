@@ -1,10 +1,9 @@
 ---
 # Markdownlint Configuration
 
-# Allow long lines (tables, URLs)
+# Allow long lines (URLs in plugin links)
 MD013:
   line_length: 300
-  tables: false
 
 # Allow HTML comments (used for autogeneration markers)
 MD033:
@@ -14,6 +13,3 @@ MD033:
 # Allow duplicate headings in different sections
 MD024:
   siblings_only: true
-
-# Disable table column alignment check (auto-generated tables)
-MD060: false
