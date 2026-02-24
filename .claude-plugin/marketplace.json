@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "core",
+      "name": "aida-core",
       "source": {
         "source": "github",
         "repo": "oakensoul/aida-core-plugin",
@@ -16,7 +16,18 @@
       },
       "description": "Foundation plugin for building your custom Claude Code experience. Extension scaffolding, multi-level configuration, and structured session context.",
       "version": "0.8.0",
-      "tags": ["core", "extensions", "configuration", "mementos"]
+      "category": "core",
+      "homepage": "https://github.com/oakensoul/aida-core-plugin",
+      "author": {
+        "name": "oakensoul",
+        "email": "oakensoul@users.noreply.github.com"
+      },
+      "tags": [
+        "core",
+        "extensions",
+        "configuration",
+        "mementos"
+      ]
     }
   ]
 }
