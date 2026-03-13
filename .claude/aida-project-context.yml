@@ -1,0 +1,47 @@
+version: 0.7.0
+last_updated: '2026-03-13T17:05:29.148045+00:00'
+config_complete: true
+project_name: aida-marketplace
+project_root: /Users/oakensoul/Developer/oakensoul/aida-marketplace
+vcs:
+  type: git
+  has_vcs: true
+  uses_worktrees: false
+  remote_url: git@github.com:oakensoul/aida-marketplace.git
+  is_github: true
+  is_gitlab: false
+files:
+  has_readme: true
+  has_license: true
+  has_gitignore: true
+  has_dockerfile: false
+  has_docker_compose: false
+  has_changelog: false
+  has_contributing: false
+  has_tests: false
+  has_ci_cd: true
+  has_docs_directory: false
+languages:
+  primary: TypeScript
+  all:
+  - TypeScript
+  - JavaScript
+tools:
+  detected:
+  - GitHub Actions
+  - Git
+  testing_framework: Minimal - manual testing only
+inferred:
+  project_type: Unknown
+  team_collaboration: Small team (2-5 people) with frequent sync
+  documentation_level: Standard - README, API docs, inline comments
+  code_organization: Follow existing pattern
+preferences:
+  branching_model: GitHub Flow (feature branches → main)
+  issue_tracking: GitHub Issues
+  github_project_board: null
+  jira_config: null
+  confluence_spaces: null
+  project_conventions: Plugin marketplace patterns - plugin registry, version management,
+    automated updates
+  api_docs_approach: null
