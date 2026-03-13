@@ -46,13 +46,13 @@ jobs:
       - name: Install linters
         run: |
           pip install yamllint
-          npm install -g markdownlint-cli
+          npm install -g markdownlint-cli2
 
       - name: Lint YAML
         run: yamllint .github/workflows/ .yamllint.yml .markdownlint.yml
 
       - name: Lint Markdown
-        run: markdownlint '**/*.md'
+        run: markdownlint-cli2 '**/*.md'
 
       - name: Validate JSON
         run: |
