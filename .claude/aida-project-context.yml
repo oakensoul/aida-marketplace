@@ -1,5 +1,5 @@
 version: 0.7.0
-last_updated: '2026-03-18T18:58:43.465790+00:00'
+last_updated: '2026-03-18T19:23:07.105782+00:00'
 config_complete: true
 project_name: aida-marketplace
 project_root: /Users/oakensoul/Developer/oakensoul/aida-marketplace
@@ -22,10 +22,10 @@ files:
   has_ci_cd: true
   has_docs_directory: false
 languages:
-  primary: JavaScript
+  primary: TypeScript
   all:
-  - JavaScript
   - TypeScript
+  - JavaScript
 tools:
   detected:
   - Git
@@ -42,5 +42,5 @@ preferences:
   github_project_board: null
   jira_config: null
   confluence_spaces: null
-  project_conventions: Follow existing pattern
+  project_conventions: Standard conventions - follow typical open-source project conventions
   api_docs_approach: null
