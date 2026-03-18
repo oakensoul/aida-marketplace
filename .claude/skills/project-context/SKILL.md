@@ -27,55 +27,33 @@ auto-detected or explicitly configured for this project.
 
 **Version Control:** git
 
-
-
 - .gitignore: ✓
-
-
 - **Worktree workflow:** No
-
-
 - **Branching model:** GitHub Flow (feature branches → main)
-
-
 
 ## Project Structure
 
 ### Source Code Organization
 
-
 **Source organization:** Flat structure (no src/ directory)
-
 
 **Code organization pattern:** Follow existing pattern
 
 ### Documentation
 
-
 **Documentation:** README.md only
-
-
-
 
 **README:** `README.md` (1592 chars - Standard - README, API docs, inline comments)
 
-
-
 **Changelog:** None (changes tracked in git commits)
-
-
-
 
 **License:** `LICENSE`
 
-
 ### Testing
-
 
 **Testing framework:** Minimal - manual testing only
 
 **Tests:** Not yet set up
-
 
 ### Tools & Infrastructure
 
@@ -85,22 +63,15 @@ auto-detected or explicitly configured for this project.
 
 ### Docker
 
-
 **Docker:** Not used
-
 
 ### CI/CD
 
-
 **CI/CD:** GitHub Actions
-
-
 
 ### Issue Tracking
 
-
 **Issue Tracking System:** GitHub Issues
-
 
 **MCP Integration:** ✅ GitHub MCP (official)
 
@@ -111,16 +82,11 @@ Claude should:
 - Suggest issue labels and milestones
 - Use GitHub MCP for issue management
 
-
-
 ## Project Conventions
-
 
 Follow existing pattern
 
-
 ## API Documentation
-
 
 ## Guidelines for Claude
 
@@ -129,40 +95,24 @@ When working in this project:
 **Code Structure:**
 
 - Place new files following the "Follow existing pattern" organization pattern
-
 - Follow flat project structure
-
-
 - Create tests directory when adding first test
-
 
 **Documentation:**
 
-
 - README.md only
-
-
-
 
 **Testing:**
 
-
 - Follow Minimal - manual testing only approach
-
-
 
 **Conventions:**
 
-
 - Follow project-specific conventions documented above
-
 
 **Quality:**
 
-
-
 - Ensure CI/CD checks pass before committing
-
 
 ---
 
