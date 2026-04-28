@@ -7,6 +7,10 @@ and the marketplace adheres to [Semantic Versioning](https://semver.org/spec/v2.
 
 ## [Unreleased]
 
+### Changed
+
+- Bumped `aida-core` plugin pin from v1.4.2 to v1.4.5.
+
 ## [0.1.0] - 2026-04-28
 
 First versioned release of the marketplace. Cuts the org transfer from
