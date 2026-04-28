@@ -7,9 +7,21 @@ and the marketplace adheres to [Semantic Versioning](https://semver.org/spec/v2.
 
 ## [Unreleased]
 
+### Added
+
+- CI workflow `no-ai-coauthor.yml` that fails any PR whose commits contain
+  `Co-Authored-By:` trailers attributing authorship to known AI tools
+  (Claude, Copilot, Cursor, ChatGPT, Gemini, Aider, Codex, Tabnine) or
+  to Anthropic / OpenAI noreply addresses. There is no skip label.
+
 ### Changed
 
 - Bumped `aida-core` plugin pin from v1.4.2 to v1.4.5.
+- Stripped pre-existing AI co-author trailers from `main` history via
+  `git filter-branch` (force-pushed). The trailers were on 7 historical
+  commits and have been removed; commit subjects and content are
+  unchanged. New commit SHAs as a result — anyone with a local clone
+  should `git fetch && git reset --hard origin/main`.
 
 ## [0.1.0] - 2026-04-28
 
