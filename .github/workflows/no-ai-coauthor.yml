@@ -1,0 +1,46 @@
+---
+name: No AI Co-Authors
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  no-ai-coauthors:
+    name: No AI Co-Authors
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Scan PR commits for AI co-author trailers
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git fetch origin "$BASE_REF" --depth=1
+
+          # Collect commit messages unique to this PR
+          msgs=$(git log --format='%H%n%B%n---END---' "origin/$BASE_REF..HEAD")
+
+          # Match Co-Authored-By trailers attributing authorship to known AI
+          # assistants or to Anthropic / OpenAI noreply addresses.
+          pattern='^[Cc]o-[Aa]uthored-[Bb]y:.*([Cc]laude|[Cc]opilot'
+          pattern="$pattern|[Cc]ursor|[Cc]hat[Gg][Pp][Tt]|[Gg]emini"
+          pattern="$pattern|[Aa]ider|[Cc]odex|[Tt]abnine"
+          pattern="$pattern|noreply@(anthropic|openai)\\.com)"
+
+          if echo "$msgs" | grep -E "$pattern" > /tmp/ai-coauthors; then
+            echo "::error::AI co-author trailers detected in PR commits:"
+            echo ""
+            cat /tmp/ai-coauthors
+            echo ""
+            err="AI co-author attribution is not allowed in this org."
+            err="$err See CONTRIBUTING.md."
+            err="$err Fix: amend or rebase to drop the Co-Authored-By trailer,"
+            err="$err then force-push your branch."
+            echo "::error::$err"
+            exit 1
+          fi
+
+          echo "No AI co-author trailers detected."
