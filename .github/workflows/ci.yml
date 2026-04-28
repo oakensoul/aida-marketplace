@@ -58,3 +58,25 @@ jobs:
         run: |
           python -m json.tool .claude-plugin/marketplace.json > /dev/null
           echo "marketplace.json is valid JSON"
+
+  changelog:
+    name: Changelog
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify CHANGELOG.md updated
+        if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') }}
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git fetch origin "$BASE_REF" --depth=1
+          if git diff --name-only "origin/$BASE_REF...HEAD" | grep -qx CHANGELOG.md; then
+            echo "CHANGELOG.md was updated."
+          else
+            echo "::error::CHANGELOG.md was not updated. Add an entry under [Unreleased], or apply the 'skip-changelog' label if this PR genuinely doesn't warrant one (typo fixes, internal CI tweaks, etc.)."
+            exit 1
+          fi
