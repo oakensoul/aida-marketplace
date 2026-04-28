@@ -29,6 +29,7 @@ interface Plugin {
 
 interface Marketplace {
   name: string;
+  version: string;
   description: string;
   owner: {
     name: string;
@@ -125,6 +126,7 @@ function validateMarketplace(data: unknown): data is Marketplace {
   if (typeof data !== "object" || data === null) return false;
   const m = data as Record<string, unknown>;
   if (typeof m.name !== "string") return false;
+  if (typeof m.version !== "string" || !isValidSemver(m.version)) return false;
   if (!Array.isArray(m.plugins)) return false;
   for (const entry of m.plugins) {
     if (typeof entry !== "object" || entry === null) return false;
@@ -400,8 +402,9 @@ function main(): void {
 
   if (!validateMarketplace(data)) {
     console.error("[ERROR] marketplace.json has invalid structure.");
-    console.error("        Ensure it has 'name', 'plugins' array, and each plugin has");
-    console.error("        'name', 'version', 'description', and 'source' fields.");
+    console.error("        Ensure it has 'name', a semver 'version', a 'plugins' array,");
+    console.error("        and each plugin has 'name', 'version', 'description', and");
+    console.error("        'source' fields.");
     process.exit(2);
     return;
   }
