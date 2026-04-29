@@ -1,6 +1,6 @@
 {
   "name": "aida",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "AIDA - Agentic Intelligence Digital Assistant. Foundation plugins for extending Claude Code.",
   "owner": {
     "name": "oakensoul",

@@ -7,6 +7,12 @@ and the marketplace adheres to [Semantic Versioning](https://semver.org/spec/v2.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-04-28
+
+Governance, policy, and a new aida-core pin. Adds branch-protection
+support files (CODEOWNERS, MAINTAINERS.md) and an AI-attribution gate
+in CI; bumps the aida-core plugin pin to v1.4.6.
+
 ### Added
 
 - CI workflow `no-ai-coauthor.yml` that fails any PR whose commits contain
@@ -26,6 +32,7 @@ and the marketplace adheres to [Semantic Versioning](https://semver.org/spec/v2.
 ### Changed
 
 - Bumped `aida-core` plugin pin from v1.4.2 to v1.4.6.
+- Top-level `version` field in `marketplace.json` bumped to `0.2.0`.
 - Stripped pre-existing AI co-author trailers from `main` history via
   `git filter-branch` (force-pushed). The trailers were on 7 historical
   commits and have been removed; commit subjects and content are
