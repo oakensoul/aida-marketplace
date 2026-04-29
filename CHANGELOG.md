@@ -7,6 +7,12 @@ and the marketplace adheres to [Semantic Versioning](https://semver.org/spec/v2.
 
 ## [Unreleased]
 
+### Changed
+
+- `check-updates.yml` workflow now prunes prior `automated/plugin-updates-*`
+  branches before opening a new update PR, so closed/superseded automation
+  branches no longer accumulate on origin.
+
 ## [0.2.0] - 2026-04-28
 
 Governance, policy, and a new aida-core pin. Adds branch-protection

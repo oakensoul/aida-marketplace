@@ -69,6 +69,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          # Prune stale automation branches before creating a new one.
+          # Safe: the open-PR check above already exited if any active PR exists,
+          # so anything still matching the prefix has a closed/merged/no PR.
+          STALE=$(git ls-remote --heads origin 'automated/plugin-updates-*' \
+            | awk '{print $2}' | sed 's|refs/heads/||')
+          if [ -n "$STALE" ]; then
+            echo "Pruning stale automation branches:"
+            echo "$STALE"
+            echo "$STALE" | xargs git push origin --delete
+          fi
+
           BRANCH="automated/plugin-updates-$(date +%Y%m%d-%H%M)"
           git checkout -b "$BRANCH"
           git commit -m "chore: update plugin versions" \
