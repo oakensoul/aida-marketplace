@@ -25,7 +25,7 @@ and the marketplace adheres to [Semantic Versioning](https://semver.org/spec/v2.
 
 ### Changed
 
-- Bumped `aida-core` plugin pin from v1.4.2 to v1.4.5.
+- Bumped `aida-core` plugin pin from v1.4.2 to v1.4.6.
 - Stripped pre-existing AI co-author trailers from `main` history via
   `git filter-branch` (force-pushed). The trailers were on 7 historical
   commits and have been removed; commit subjects and content are
