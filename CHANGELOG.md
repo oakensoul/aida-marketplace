@@ -13,10 +13,19 @@ and the marketplace adheres to [Semantic Versioning](https://semver.org/spec/v2.
   `Co-Authored-By:` trailers attributing authorship to known AI tools
   (Claude, Copilot, Cursor, ChatGPT, Gemini, Aider, Codex, Tabnine) or
   to Anthropic / OpenAI noreply addresses. There is no skip label.
+- `.github/CODEOWNERS` defining required reviewers per path
+  (`@oakensoul` is the default owner; specific paths for
+  `.claude-plugin/`, `.github/`, `scripts/`, and top-level docs).
+  Combined with the new `require_code_owner_reviews: true` branch
+  protection setting, this makes path-owner approval mandatory.
+- `MAINTAINERS.md` describing the role model (Owner / Committer /
+  Collaborator) since GitHub's CODEOWNERS syntax has no notion of
+  "owner vs committer" — only "required reviewer." Lists current
+  people and the process to add a committer.
 
 ### Changed
 
-- Bumped `aida-core` plugin pin from v1.4.2 to v1.4.5.
+- Bumped `aida-core` plugin pin from v1.4.2 to v1.4.6.
 - Stripped pre-existing AI co-author trailers from `main` history via
   `git filter-branch` (force-pushed). The trailers were on 7 historical
   commits and have been removed; commit subjects and content are

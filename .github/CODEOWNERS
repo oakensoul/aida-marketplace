@@ -1,0 +1,27 @@
+# CODEOWNERS - defines required reviewers per path.
+#
+# IMPORTANT: GitHub's CODEOWNERS syntax has no notion of "owner" vs
+# "committer" vs "collaborator." Every entry below specifies a
+# *required reviewer* for matching paths - with
+# `require_code_owner_reviews: true` set on main, listed owners must
+# approve before a PR can merge. For the role model (owner / committer
+# / collaborator) and what each role means, see MAINTAINERS.md.
+#
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for everything
+* @oakensoul
+
+# Marketplace registry & plugin metadata
+/.claude-plugin/ @oakensoul
+
+# CI workflows & repo configuration
+/.github/ @oakensoul
+
+# Build/runtime scripts
+/scripts/ @oakensoul
+
+# Top-level docs
+README.md @oakensoul
+CHANGELOG.md @oakensoul
+LICENSE @oakensoul
