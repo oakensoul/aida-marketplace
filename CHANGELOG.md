@@ -7,6 +7,15 @@ and the marketplace adheres to [Semantic Versioning](https://semver.org/spec/v2.
 
 ## [Unreleased]
 
+### Added
+
+- `AUTHORS` file at the repo root listing substantive contributors.
+  The collective copyright holder used in SPDX file headers is
+  "The AIDA Marketplace Authors"; the AUTHORS roster is the
+  authoritative list of who that collective is. Lets file headers
+  stay stable as the contributor list grows — new substantive
+  contributors are appended on first merged PR.
+
 ### Changed
 
 - `check-updates.yml` workflow now prunes prior `automated/plugin-updates-*`
